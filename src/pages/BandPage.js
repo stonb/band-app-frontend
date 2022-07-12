@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 const BandPage = () => {
 
-    const [users, setUsers] = useState();
+    const [bands, setBands] = useState();
 
     const columns = [
         {
@@ -39,14 +39,14 @@ const BandPage = () => {
     // Function to collect data
     const getApiData = async () => {
         const response = await fetch('/band').then(response => response.json());
-        setUsers(response);
+        setBands(response);
     };
 
     return (
         <>
             <h1>Bands Database</h1>
             <p></p>
-            <Table columns={columns} dataSource={users} pagination={false} rowKey={'band_id'} />
+            <Table columns={columns} dataSource={bands} pagination={false} rowKey={'band_id'} />
         </>
     );
 };
