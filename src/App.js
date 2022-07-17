@@ -3,6 +3,7 @@ import Layout         from "./pages/Layout";
 import Home           from './pages/Home';
 import AlbumPage      from './pages/AlbumPage';
 import BandPage       from './pages/BandPage';
+import EditBandPage   from "./pages/EditBandPage";
 import MemberPage     from './pages/MemberPage';
 import NotFoundPage   from './pages/404Page';
 
@@ -18,6 +19,7 @@ function App() {
               <Route index element={<Home/>} />
               <Route path="/album" element={<AlbumPage/>} />
               <Route path="/band" element={<BandPage/>} />
+              <Route path="/band-edit" element={<EditBandPage/>} />
               <Route path="/member" element={<MemberPage/>} />
               <Route path="*" element={<NotFoundPage/>} />
             </Route>

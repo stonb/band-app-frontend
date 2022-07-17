@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Component } from 'react';
 import { Table } from 'antd';
 import React from 'react';
 
@@ -39,7 +39,7 @@ const BandPage = () => {
     // Function to collect data
     const getApiData = async () => {
         const response = await fetch('/band').then(response => response.json());
-        setBands(response);
+        await setBands(response);
     };
 
     return (
