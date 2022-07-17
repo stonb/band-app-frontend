@@ -2,7 +2,6 @@ import { Button, Form, Input} from 'antd';
 import {useNavigate} from 'react-router-dom';
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Navigate } from 'react-router-dom';
 
 const EditBandPage = () => {
 
@@ -28,8 +27,8 @@ const EditBandPage = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(postObj)
             };
-            const response = await fetch('/band', requestOptions);
-            const data = await response.json().then(response => console.log(response));
+            
+            await fetch('/band', requestOptions).then(response => console.log(response));
         
             setBand('');
             setCountry('');
@@ -41,7 +40,7 @@ const EditBandPage = () => {
         else
         {
             //TODO validate for for dirty/empty
-            console.log("INVALID DATA");
+            console.log("POST: INVALID DATA");
         }
         
     };
@@ -67,10 +66,14 @@ const EditBandPage = () => {
             }
         : null;
 
-    const sendBandData = () => {
-        console.log("LOG> " + band + " " + country + " " + genre  + " " + year);
-        handleSubmit();
-    };
+
+    const cancelForm = () => {
+        setBand('');
+        setCountry('');
+        setGenre('');
+        setYear(0); 
+        navigate('/band')
+    }
 
     return (
         <>
@@ -127,10 +130,18 @@ const EditBandPage = () => {
                 </Form.Item>
                 <Form.Item {...buttonItemLayout}>
                     <Button 
-                        type="Submit"
+                        type='primary' size='large' shape='round'
                         onClick={handleSubmit}
                     >
                         Submit
+                    </Button>
+                    
+                    <Button 
+                        type='primary' size='large' shape='round'
+                        onClick={cancelForm}
+                        danger
+                    >
+                        Cancel
                     </Button>
                 </Form.Item>
             </Form>
