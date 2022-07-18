@@ -1,4 +1,4 @@
-import { PlusOutlined, WarningOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal } from 'antd';
 import { useState, useEffect} from 'react';
@@ -6,8 +6,6 @@ import { Table } from 'antd';
 import React from 'react';
 
 import 'antd/dist/antd.css';
-
-
 
 const BandPage = () => {
 
@@ -20,7 +18,17 @@ const BandPage = () => {
         {
             title: 'Band',
             dataIndex: 'band_name',
-            render: text => <a>{text}</a>,
+            render: (_,record) =>{
+                return (
+                    <a 
+                        onClick={() => {
+                            navigate('/band/'+ record.band_id);
+                        }}
+                    >
+                        {record.band_name}
+                    </a>
+                );
+            },
         },
         {
             title: 'Country',
@@ -41,12 +49,9 @@ const BandPage = () => {
                         Delete
                     </Button>
                 );
-            }
-            ,
+            },
         }
     ];
-
-    // (<Button onClick={deleteBand(record.band_name)}>Delete</Button>)
 
     useEffect(() => {
         getApiData();
